@@ -36,9 +36,10 @@ grad = zeros(size(theta));
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 %
 
-
+% Vectorized HYPOTHESIS
 h = sigmoid(X * theta);
 
+% Vectorized COST
 term1 = -y' * log(h);
 term2 = (1 - y') * log(1 - h);
 unregularized_cost = (1 / m) * (term1 - term2);
@@ -49,14 +50,11 @@ regularized_cost = (lambda / (2 * m)) * sum_of_sqaures;
 
 J = (unregularized_cost + regularized_cost);
 
-% THE GRADIENT
-
-left_side = ((h - y)' * X)' * (1/m); % Sum using matrix multiplication
+% Vectorized GRADIENT
+left_side  = ((h - y)' * X)' * (1/m); % Sum using matrix multiplication
 right_side = (lambda / m) * theta;
 
 grad = left_side + right_side;
-
-
 
 
 % =============================================================
